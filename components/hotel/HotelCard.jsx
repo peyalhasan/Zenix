@@ -8,7 +8,7 @@ const HotelCard = () => {
       <Image
       width={200}
       height={200}
-        src="/hero-bg"
+        src="/hero-bg.jpg"
         className="max-h-[162px] max-w-[240px]"
         alt=""
       />
