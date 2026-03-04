@@ -5,7 +5,6 @@ import { getAllHotels } from "@/database/queries";
 
 const HotelListPage = async() => {
     
-  
     return (
         <>
             <section className="bg-[url('/hero-bg.jpg')] bg-cover bg-no-repeat bg-center pt-[100px] pb-[60px]">
