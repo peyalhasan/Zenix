@@ -9,7 +9,7 @@ const Search = ({fromList}) => {
               <select name="destination" id="destination">
                 <option value="Bali">Bali</option>
                 <option value="Bali">Cox&apos;s Bazar</option>
-                <option value="Bali">Sylhet</option>
+                <option value="Bali">Sylhet</option>procrastinate
                 <option value="Bali">Saint Martin</option>
                 <option value="Bali">Bali</option>
               </select>
