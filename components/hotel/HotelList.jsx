@@ -1,8 +1,6 @@
 import { getAllHotels } from "@/database/queries";
 import HotelCard from "./HotelCard";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 const HotelList = async () => {
   const allHotels = await getAllHotels();
