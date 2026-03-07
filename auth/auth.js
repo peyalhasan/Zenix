@@ -16,6 +16,8 @@ export const {
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
+      scopes: ["public_profile", "email"],
     }),
   ],
   secret: process.env.AUTH_SECRET,

@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const Navbar = ({sideMenu}) => {
   return (
-    <nav>
+    <nav className="">
       <Link href="/">
-        <Image src="/zenix.ico" alt="Zenix Logo" width={150} height={200} />
+        <Image src="/Zenix.webp" alt="Zenix Logo" className="h-20"  width={100} height={100} />
       </Link>
       {sideMenu && (
         <ul>
