@@ -5,7 +5,7 @@ import Logout from "./auth/Logout";
 
 const Navbar = async ({ sideMenu }) => {
   const session = await auth();
-  console.log(session)
+  console.log(session);
   return (
     <nav className="">
       <Link href="/">
@@ -34,7 +34,9 @@ const Navbar = async ({ sideMenu }) => {
           <li>
             {session?.user ? (
               <div>
-                <span className="mx-1">{session?.user?.name}</span>
+                <Link href='/bookings'>
+                  <span className="mx-1">{session?.user?.name}</span>
+                </Link>
                 <span> | </span>
                 <Logout />
               </div>
