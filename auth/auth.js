@@ -5,6 +5,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import mongoClientPromise from "@/database/mongoClientPromise";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { userModel } from "@/models/user-model";
+import bcrypt from "bcryptjs";
 
 export const {
   handlers: { GET, POST },
@@ -12,6 +13,9 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  session: {
+    strategy: "jwt",
+  },
   adapter: MongoDBAdapter(mongoClientPromise, {
     databaseName: "zenix",
   }),
@@ -23,19 +27,24 @@ export const {
       },
 
       async authorize(credentials) {
-        if (credentials == null) return null;
+        if (!credentials?.email || !credentials?.password) return null;
 
         try {
-          const user = await userModel.findOne({ email: credentials.email });
+          const user = await userModel
+            .findOne({ email: credentials.email })
+            .lean();
           if (user) {
-            const isMatch = user.email === credentials.email;
+            const isMatch = await bcrypt.compare(
+              credentials.password,
+              user.password,
+            );
             if (isMatch) {
               return user;
             } else {
-              return null
+              return null;
             }
           } else {
-            return null
+            return null;
           }
         } catch (error) {
           throw new Error(error.message);

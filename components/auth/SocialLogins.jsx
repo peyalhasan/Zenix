@@ -1,17 +1,30 @@
 "use client";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const SocialLogins = () => {
+  const pathname = usePathname();
+
   const hanldeAuth = (provider) => {
     signIn(provider, {
       callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/bookings`,
     });
   };
 
+  const isLoginPage = pathname === "/login";
+  const linkHref = isLoginPage ? "/register" : "/login";
+  const linkText = isLoginPage ? "Register" : "Login";
+
   return (
     <>
-      <div className="text-center text-xs text-gray-500">or Signup with</div>
+      <div className="text-center text-xs text-gray-500">
+        <Link className="text-sm font-semibold" href={linkHref}>
+          {linkText}{" "}
+        </Link>
+        or Signup with
+      </div>
       <div className="flex gap-4">
         <button
           onClick={() => hanldeAuth("facebook")}
