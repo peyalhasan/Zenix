@@ -1,11 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
+import { auth } from "@/auth/auth";
+import Logout from "./auth/Logout";
 
-const Navbar = ({sideMenu}) => {
+const Navbar = async ({ sideMenu }) => {
+  const session = await auth();
   return (
     <nav className="">
       <Link href="/">
-        <Image src="/Zenix.webp" alt="Zenix Logo" className="h-20"  width={100} height={100} />
+        <Image
+          src="/Zenix.webp"
+          alt="Zenix Logo"
+          className="h-20"
+          width={100}
+          height={100}
+        />
       </Link>
       {sideMenu && (
         <ul>
@@ -22,9 +31,17 @@ const Navbar = ({sideMenu}) => {
             <Link href="/bookings">Bookings</Link>
           </li>
           <li>
-            <Link href="/login" className="login">
-              Login
-            </Link>
+            {session?.user ? (
+              <div>
+                <span className="mx-1">{session?.user?.name}</span>
+                <span> | </span>
+                <Logout />
+              </div>
+            ) : (
+              <Link href="/login" className="login">
+                Login
+              </Link>
+            )}
           </li>
         </ul>
       )}
