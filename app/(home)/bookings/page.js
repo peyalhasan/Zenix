@@ -1,10 +1,17 @@
+import { auth } from "@/auth/auth";
 import Search from "@/components/search/Search";
 import PastBooking from "@/components/users/bookings/PastBooking";
 import UpcomingBooking from "@/components/users/bookings/UpcomingBooking";
 import ProfileInfo from "@/components/users/ProfileInfo";
-import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+
+const Bookings=async()=> {
+  const session = await auth()
+
+  if(!session){
+    redirect('/login')
+  }
   return (
     <>
       <section className="mt-[100px]">
@@ -23,3 +30,4 @@ export default function Home() {
     </>
   );
 }
+export default Bookings;
