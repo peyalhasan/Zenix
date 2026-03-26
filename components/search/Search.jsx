@@ -9,9 +9,9 @@ const Search = ({ fromList, destination, checkin, checkout }) => {
   const { replace } = useRouter();
 
   const [searchTerm, setSearchTerm] = useState({
-    destination: "Puglia",
-    checkin: "",
-    checkout: "",
+    destination: destination || "Puglia",
+    checkin: checkin,
+    checkout: checkout,
   });
 
   const [allowSearch, setAllowSearch] = useState(true);
@@ -66,6 +66,7 @@ const Search = ({ fromList, destination, checkin, checkout }) => {
                 name="destination"
                 id="destination"
                 onChange={handleInputs}
+                defaultValue={searchTerm.destination}
               >
                 <option value="Puglia">Puglia</option>
                 <option value="Catania">Catania</option>
@@ -83,6 +84,7 @@ const Search = ({ fromList, destination, checkin, checkout }) => {
                 type="date"
                 name="checkin"
                 id="checkin"
+                value={searchTerm.checkin}
                 onChange={handleInputs}
               />
             </h4>
@@ -95,6 +97,7 @@ const Search = ({ fromList, destination, checkin, checkout }) => {
                 type="date"
                 name="checkout"
                 id="checkout"
+                value={searchTerm.checkout}
                 onChange={handleInputs}
               />
             </h4>

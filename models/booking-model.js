@@ -3,11 +3,11 @@ import mongoose, {Schema} from "mongoose";
 const bookingSchema = new Schema({
   hotelId: {
     required: true,
-    type: ObjectId
+    type: Schema.Types.ObjectId
   },
   userId: {
     required: true,
-    type: ObjectId
+    type: Schema.Types.ObjectId,
   },
   checkin: {
     required: true,

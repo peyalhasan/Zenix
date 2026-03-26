@@ -9,7 +9,7 @@ const hotelSchema = new Schema({
         required: true,
         type: String,
     },
-    airportCode:{  // ✅ FIXED: was "airpostCode"
+    airportCode:{  
         required: true,
         type:String
     },

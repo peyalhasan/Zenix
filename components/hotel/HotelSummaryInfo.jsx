@@ -14,7 +14,8 @@ const HotelSummaryInfo = ({ fromListPage, info }) => {
         <p>📍 {info?.city}</p>
         <div className="flex gap-2 items-center my-4">
           <HotelRating id={info?.id} />
-         <HotelReviewNumber />
+          <HotelReviewNumber />
+          {info?.isBooked && <span>Sold Out</span>}
         </div>
         <div>
           <sapn className="bg-yellow-300 p-1 rounded-md">
@@ -29,9 +30,13 @@ const HotelSummaryInfo = ({ fromListPage, info }) => {
         </h2>
         <p className=" text-right">Per Night for 1 Rooms</p>
         {fromListPage ? (
-          <Link href={`/hotels/${info?.id}`} className="btn-primary ">Details</Link>
+          <Link href={`/hotels/${info?.id}`} className="btn-primary ">
+            Details
+          </Link>
         ) : (
-          <Link href='#' className="btn-primary ">Book</Link>
+          <Link href="#" className="btn-primary ">
+            Book
+          </Link>
         )}
       </div>
     </>
