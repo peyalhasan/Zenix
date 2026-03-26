@@ -2,7 +2,13 @@ import Link from "next/link";
 import HotelRating from "./HotelRating";
 import HotelReviewNumber from "./HotelReviewNumber";
 
-const HotelSummaryInfo = ({ fromListPage, info }) => {
+const HotelSummaryInfo = ({ fromListPage, info, checkin, checkout }) => {
+  let params = "";
+
+  if (checkin && checkout) {
+    params = `?checkin=${checkin}&checkout=${checkout}`;
+  }
+
   return (
     <>
       <div className={fromListPage ? "flex-1" : "flex-1 container"}>
@@ -30,12 +36,15 @@ const HotelSummaryInfo = ({ fromListPage, info }) => {
         </h2>
         <p className=" text-right">Per Night for 1 Rooms</p>
         {fromListPage ? (
-          <Link href={`/hotels/${info?.id}`} className="btn-primary ">
+          <Link href={`/hotels/${info?.id}${params}`} className="btn-primary ">
             Details
           </Link>
         ) : (
-          <Link href="#" className="btn-primary ">
-            Book
+          <Link
+            href="#"
+            className={info?.isBooked ? "btn-disabled btn" : "btn-primary "}
+          >
+            {info?.isBooked ? "Booked" : "Book"}
           </Link>
         )}
       </div>
